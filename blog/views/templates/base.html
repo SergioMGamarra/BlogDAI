@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %} {% endblock %}</title>
+	    <meta charset="UTF-8" >
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/style/basic.css"/>
+	    <meta name="viewport" content="width=device-width, initial scale=1.0">
+	    <link rel="stylesheet" href="{{STATIC_URL}}/bootstrap/dist/css/bootstrap.css" media="screen">
+    </head>
+	<body id="body">
+		<div class="row">
+			<div class="navbar navbar-colores  navbar-fixed-top" role="navigation">
+				<ul class="nav navbar-nav">
+			        <li>
+			        	<a class="nav-color" href="/">
+			        		Inicio 
+				        	<span class="glyphicon glyphicon-home" style="padding-left: 10px"></span>
+				       	</a>
+			        </li>
+			        {% if user.is_authenticated %}
+			        <li>
+		        		<a class="nav-color">Bienvenido {{ user.username}} 
+		        		<span class="glyphicon glyphicon-thumbs-up" style="padding-left: 10px"> 
+		        		</span>
+		        		</a>
+		        		{% if user.username == 'admin' %}
+		        		<li>
+				        	<a class="nav-color" href="/privado">Añadir Post 
+				        		<span class="glyphicon glyphicon-plus-sign" style="padding-left: 10px"> 
+				        		</span>
+				        	</a>
+				        </li>
+				        {% endif %}
+		        		<li>
+			        		<div style="padding-top:8px"id="browse_app">
+							  <a class="btn btn-large btn-info" href="/cerrar">
+							 	 Logout
+							 	 <span class="glyphicon glyphicon-thumbs-down" style="padding-left: 10px;"> 
+							  </a>
+							</div>
+						</li>
+		        	</li>
+		        	{% else %}
+		        	<li>
+			        	<a class="nav-color" href="/usuario/nuevo">Darse de alta 
+			        		<span class="glyphicon glyphicon-user" style="padding-left: 10px"> 
+			        		</span>
+				        	</a>
+			        	</li>
+		        	<li>
+		        		<a class="nav-color" href="/loginUser">Login 
+		        		<span class="glyphicon glyphicon-user" style="padding-left: 10px"> 
+		        		</span>
+			        	</a>
+			        {% endif %}
+			        </li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header">
+				<img class="img-responsive" src="{{STATIC_URL}}/images/bannerBlog.png"/>
+			</div>
+		<div class="container">
+			<div class="">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+					<br>
+					<div class="panel panel-default">
+						<div class="panel-heading"> 
+							<p class="panel-title"> Menu </p>
+						</div>
+						<div class="panel-body">
+							<div>
+								<a href="/"><p class=""> Inicio  <span class="glyphicon glyphicon-home" style="padding-left: 10px"></span></p></a>
+							</div>
+							<br>
+							<div class="">
+								<p class=""> Categorías <span class="glyphicon glyphicon-book" style="padding-left: 10px"></span> </p>
+								<ul>
+									<li><a class="" href="/category/1"> Django </a></li>
+				            		<li><a class="" href="/category/2"> Bootstrap </a></li> 
+								</ul>
+							</div>
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+					{% block content %} {% endblock %}
+				</div>
+			</div>
+		</div>
+
+	  	<!-- jQuery (necessary for Bootstrap JavaScript plugins) -->
+        <script src="static/jquery/jquery-1.10.2.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="static/bootstrap/dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

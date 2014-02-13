@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} 
+	Blog DAI | {{post.title}}
+{% endblock %}
+
+{% block content%} 
+	<div class="row">
+		<br>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-post">
+			<div class="titulo-post"> 
+				{{ post.title}} 
+			</div>
+			<div class="contenido-post">
+				<p> {{ post.content}} </p>
+			</div>
+			<hr>
+		</div>
+	</div>
+	<br>
+	<br>
+	{% if user.is_authenticated %}
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-post">
+		<div class="titulo-post"> 
+			Inserta tu comentario
+		</div>
+		<div class="contenido-post">
+			<form id='formulario' method='post' action=''>{% csrf_token %}
+				<table>{{FormComent}}</table>
+				<p><input type='submit' value='Ingresar'/></p>
+			</form>
+		</div>
+		<hr>
+	</div>
+	{% endif %}
+
+	<h2>comentarios</h2>
+	{% for comment in comments %}
+		<strong>{{comment.author}} - {{comment.creation_date}}</strong>
+		<br>
+		<p>
+		{{comment.body}}
+		</p>
+		<br>
+	{% endfor %}
+	<bt>
+{% endblock %}

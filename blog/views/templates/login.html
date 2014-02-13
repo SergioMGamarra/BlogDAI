@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} 
+blog DAI | Login
+{% endblock %}
+
+{% block content%}
+	<br>
+	{% if error %}
+		<div class="alert alert-danger">
+			{{error}}
+		</div>
+	{% endif %}
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-post">
+		<div class="titulo-post"> 
+			Inicia Sesion
+		</div>
+		<div class="contenido-post">
+			<form id='formulario' method='post' action=''>{% csrf_token %}
+				<table>{{formulario}}</table>
+				<p><input type='submit' value='Ingresar'/></p>
+			</form>
+		</div>
+		<hr>
+	</div>
+{% endblock %}
